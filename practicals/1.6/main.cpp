@@ -1,132 +1,192 @@
 #include <iostream>
 #include <vector>
 
-using namespace std;
+//1. Порівняння двох цілих чисел за допомогою бітового подання
+//int main() {
+//    int A, B;
+//    std::cout << "Введіть два числа A і B: ";
+//    std::cin >> A >> B;
+//
+//    if (!(A ^ B)) { // Використовуємо бітову операцію XOR
+//        std::cout << "Числа рівні" << std::endl;
+//    }
+//    else {
+//        std::cout << "Числа не рівні" << std::endl;
+//    }
+//
+//    return 0;
+//}
 
-bool areEqual(int a, int b) {
-  int bitSize = sizeof(int) * 8;
+//2. Перевірка, чи число кратне 8
+//int main() {
+//    int A;
+//    std::cout << "Введіть число A: ";
+//    std::cin >> A;
+//
+//    if ((A & 7) == 0) { // Перевірка на кратність 8 через маскування останніх 3 бітів
+//        std::cout << "Число кратне 8" << std::endl;
+//    }
+//    else {
+//        std::cout << "Число не кратне 8" << std::endl;
+//    }
+//
+//    return 0;
+//}
 
-  for (int i = 0; i < bitSize; i++) {
-    int mask = 1 << i;
-    // 1 mask = 00000001 & 10010011 = 00000001
-    //          10010011
+//3. Специфікація для операцій AND, OR, XOR
+//std::vector<int> bitwiseAND(const std::vector<int>& seq1, const std::vector<int>& seq2) {
+//    std::vector<int> result(seq1.size());
+//    for (size_t i = 0; i < seq1.size(); ++i) {
+//        result[i] = seq1[i] & seq2[i];
+//    }
+//    return result;
+//}
+//
+//std::vector<int> bitwiseOR(const std::vector<int>& seq1, const std::vector<int>& seq2) {
+//    std::vector<int> result(seq1.size());
+//    for (size_t i = 0; i < seq1.size(); ++i) {
+//        result[i] = seq1[i] | seq2[i];
+//    }
+//    return result;
+//}
+//
+//std::vector<int> bitwiseXOR(const std::vector<int>& seq1, const std::vector<int>& seq2) {
+//    std::vector<int> result(seq1.size());
+//    for (size_t i = 0; i < seq1.size(); ++i) {
+//        result[i] = seq1[i] ^ seq2[i];
+//    }
+//    return result;
+//}
+//
+//int main() {
+//    std::vector<int> seq1 = { 1, 0, 1, 1 };
+//    std::vector<int> seq2 = { 0, 1, 0, 1 };
+//
+//    std::vector<int> andResult = bitwiseAND(seq1, seq2);
+//    std::vector<int> orResult = bitwiseOR(seq1, seq2);
+//    std::vector<int> xorResult = bitwiseXOR(seq1, seq2);
+//
+//    // Виводимо результати
+//    std::cout << "AND: ";
+//    for (int bit : andResult) std::cout << bit;
+//    std::cout << std::endl;
+//
+//    std::cout << "OR: ";
+//    for (int bit : orResult) std::cout << bit;
+//    std::cout << std::endl;
+//
+//    std::cout << "XOR: ";
+//    for (int bit : xorResult) std::cout << bit;
+//    std::cout << std::endl;
+//
+//    return 0;
+//}
 
-    int a_bit = a & mask;
-    int b_bit = b & mask;
+//4. Специфікація для операцій + та NOT
+//std::vector<int> bitwiseNOT(const std::vector<int>&seq) {
+//    std::vector<int> result(seq.size());
+//    for (size_t i = 0; i < seq.size(); ++i) {
+//        result[i] = ~seq[i] & 1; // Операція NOT для одного біта
+//    }
+//    return result;
+//}
+//
+//std::vector<int> bitwiseAddition(const std::vector<int>& seq1, const std::vector<int>& seq2) {
+//    std::vector<int> result(seq1.size());
+//    int carry = 0;
+//    for (int i = seq1.size() - 1; i >= 0; --i) {
+//        int sum = seq1[i] + seq2[i] + carry;
+//        result[i] = sum % 2;
+//        carry = sum / 2;
+//    }
+//    return result;
+//}
+//
+//int main() {
+//    std::vector<int> seq1 = { 1, 0, 1, 1 };
+//    std::vector<int> seq2 = { 0, 1, 0, 1 };
+//
+//    std::vector<int> notSeq1 = bitwiseNOT(seq1);
+//    std::vector<int> addResult = bitwiseAddition(seq1, seq2);
+//
+//    // Виводимо результати
+//    std::cout << "NOT Seq1: ";
+//    for (int bit : notSeq1) std::cout << bit;
+//    std::cout << std::endl;
+//
+//    std::cout << "Addition: ";
+//    for (int bit : addResult) std::cout << bit;
+//    std::cout << std::endl;
+//
+//    return 0;
+//}
 
-    if (a_bit != b_bit) {
-      return false;
+//5. Сума двох цілих чисел за допомогою бітових операцій
+//int addBitwise(int A, int B) {
+//    while (B != 0) {
+//        int carry = A & B;  // Знаходимо перенос
+//        A = A ^ B;          // Знаходимо суму без переносів
+//        B = carry << 1;     // Переносимо на один біт ліворуч
+//    }
+//    return A;
+//}
+//
+//int main() {
+//    int A, B;
+//    std::cout << "Введіть два числа A і B: ";
+//    std::cin >> A >> B;
+//
+//    int sum = addBitwise(A, B);
+//    std::cout << "Сума: " << sum << std::endl;
+//
+//    return 0;
+//}
+
+//6. Зсув послідовності чисел вліво та вправо
+std::vector<int> shiftLeft(const std::vector<int>&seq, int positions) {
+    std::vector<int> result(seq.size());
+    for (size_t i = 0; i < seq.size(); ++i) {
+        if (i + positions < seq.size()) {
+            result[i] = seq[i + positions];
+        }
+        else {
+            result[i] = 0;
+        }
     }
-  }
-  return true;
+    return result;
 }
 
-bool isMultipleOf8(int a) {
-  // 7 in binary is 00000111, so if a & 7 == 0, then a is a multiple of 8
-  // because 8 in binary is 00001000
-  // and 00001000 & 00000111 == 00000000
-  // so if a & 7 == 0, then a is a multiple of 8
-  // 00011000 -> 24
-  // 00111000 -> 56
-  // 01111000 -> 120
-  // 11111000 -> 248
-  int mask_binary = 0b00000111; // 7 in binary
-  return (a & mask_binary) == 0;
-}
-
-void printVector(const std::vector<int>& vec) {
-  for (int i = 0; i < vec.size(); i++) {
-    std::cout << vec[i] << " ";
-  }
-  std::cout << std::endl;
+std::vector<int> shiftRight(const std::vector<int>& seq, int positions) {
+    std::vector<int> result(seq.size());
+    for (size_t i = 0; i < seq.size(); ++i) {
+        if (i >= positions) {
+            result[i] = seq[i - positions];
+        }
+        else {
+            result[i] = 0;
+        }
+    }
+    return result;
 }
 
 int main() {
-  {
-    // Задано два цілих значення А та В. Визначити, чи вони
-    // дорівнюють, використовуючи бітове подання чисел.
+    std::vector<int> seq = { 1, 0, 1, 1, 0 };
+    int positions;
 
-    int a, b;
-    std::cout << "Enter two integers: ";
-    std::cin >> a >> b;
+    std::cout << "Введіть кількість позицій для зсуву: ";
+    std::cin >> positions;
 
-    if (areEqual(a, b)) {
-      std::cout << "The numbers are equal." << std::endl;
-    } else {
-      std::cout << "The numbers are not equal." << std::endl;
-    }
-  }
+    std::vector<int> leftShifted = shiftLeft(seq, positions);
+    std::vector<int> rightShifted = shiftRight(seq, positions);
 
-  {
-    // Задано ціле значення А. Визначити, чи є значення А
-    // кратним 8.
+    // Виводимо результати
+    std::cout << "Зсув вліво: ";
+    for (int bit : leftShifted) std::cout << bit;
+    std::cout << std::endl;
 
-    int a;
-    std::cout << "Enter an integer: ";
-    std::cin >> a;
+    std::cout << "Зсув вправо: ";
+    for (int bit : rightShifted) std::cout << bit;
+    std::cout << std::endl;
 
-    if (isMultipleOf8(a)) {
-      std::cout << "The number is a multiple of 8." << std::endl;
-    } else {
-      std::cout << "The number is not a multiple of 8." << std::endl;
-    }
-  }
-
-  {
-    // Завдання:
-    // Задано дві послідовності, які складаються з 0 та 1.
-    // Скласти специфікацію для моделювання операцій AND, OR, XOR.
-
-    // Специфікація:
-
-    // Вхідні дані:
-    // - Дві послідовності бітів (A, B) однакової довжини.
-
-    // Алгоритм:
-    // 1. Пройти по кожному елементу послідовностей A і B.
-    // 2. Для кожного елемента обчислити результат операції AND, OR, або XOR.
-    // 3. Зберегти результат в нову послідовність.
-
-    // Операції:
-    // - AND: ri = ai AND bi
-    // - OR: ri = ai OR bi
-    // - XOR: ri = ai XOR bi
-
-    // Вихідні дані:
-    // - Результуюча послідовність R.
-
-    int n = 10;
-
-    std::vector<int> a(n); // [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    std::vector<int> b(n);
-
-    for (int i = 0; i < n; i++) {
-      a[i] = rand() % 2;
-      b[i] = rand() % 2;
-    }
-
-    std::cout << "A  : ";
-    printVector(a);
-    std::cout << "B  : ";
-    printVector(b);
-
-    std::vector<int> r_and(n);
-    std::vector<int> r_or(n);
-    std::vector<int> r_xor(n);
-
-    for (int i = 0; i < n; i++) {
-      r_and[i] = a[i] & b[i];
-      r_or[i] = a[i] | b[i];
-      r_xor[i] = a[i] ^ b[i];
-    }
-
-    std::cout << "AND: ";
-    printVector(r_and);
-    std::cout << "OR : ";
-    printVector(r_or);
-    std::cout << "XOR: ";
-    printVector(r_xor);
-  }
-
-  return 0;
+    return 0;
 }

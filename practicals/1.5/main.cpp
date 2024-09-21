@@ -1,53 +1,121 @@
-/**
- * Done by:
- * Student Name: Severyn Kotyhoroshko
- * Student Group: 123
- * Lab 1.5
- */
 
 #include <iostream>
-#include <cstdlib>
-#include <ctime>
+#include <vector>
+#include <limits>
 
-using namespace std;
+//1. Знайти мінімальне значення у послідовності
+//int findMin(const std::vector<int>&A) {
+//    int minValue = std::numeric_limits<int>::max();  // Ініціалізуємо значенням максимально можливого int
+//    for (int val : A) {
+//        if (val < minValue) {
+//            minValue = val;
+//        }
+//    }
+//    return minValue;
+//}
+//
+//int main() {
+//    std::vector<int> A = { 5, 3, 8, 1, 9, -2 };
+//    std::cout << "Мінімальне значення: " << findMin(A) << std::endl;
+//
+//    return 0;
+//}
 
-void initRandomizer() {
-    // Seed the random number generator with the current time
-    srand(time(0));  // srand(time(NULL)) could also be used
+//2. Знайти індекс найбільшого значення серед додатних елементів послідовності
+//int findMaxPositiveIndex(const std::vector<int>&A) {
+//    int maxIndex = -1;
+//    int maxValue = std::numeric_limits<int>::min(); // Ініціалізуємо найменшим значенням int
+//    for (size_t i = 0; i < A.size(); ++i) {
+//        if (A[i] > 0 && A[i] > maxValue) {
+//            maxValue = A[i];
+//            maxIndex = i;
+//        }
+//    }
+//    return maxIndex;
+//}
+
+//int main() {
+//    std::vector<int> A = { -4, 3, 0, 7, 5, -1 };
+//    int index = findMaxPositiveIndex(A);
+//    if (index != -1) {
+//        std::cout << "Індекс найбільшого додатного елемента: " << index << std::endl;
+//    }
+//    else {
+//        std::cout << "Додатних елементів немає" << std::endl;
+//    }
+//
+//    return 0;
+//}
+
+//3. Знайти мінімальне значення у послідовності A[n], більше за P
+//int findMinGreaterThanP(const std::vector<int>& A, int P) {
+//    int minValue = std::numeric_limits<int>::max();
+//    for (int val : A) {
+//        if (val > P && val < minValue) {
+//            minValue = val;
+//        }
+//    }
+//    return (minValue == std::numeric_limits<int>::max()) ? -1 : minValue; // Якщо такого елемента немає
+//}
+
+//int main() {
+//    std::vector<int> A = { 5, 3, 8, 1, 9, -2 };
+//    int P = 4;
+//    int result = findMinGreaterThanP(A, P);
+//
+//    if (result != -1) {
+//        std::cout << "Мінімальне значення більше за P: " << result << std::endl;
+//    }
+//    else {
+//        std::cout << "Немає значення, більшого за P" << std::endl;
+//    }
+//
+//    return 0;
+//}
+
+//4. Знайти індекс останнього входження значення P у послідовність A[n]
+//int findLastOccurrence(const std::vector<int>&A, int P) {
+//    int lastIndex = -1;
+//    for (size_t i = 0; i < A.size(); ++i) {
+//        if (A[i] == P) {
+//            lastIndex = i;
+//        }
+//    }
+//    return lastIndex;
+//}
+
+//int main() {
+//    std::vector<int> A = { 5, 3, 8, 1, 9, 3, 5 };
+//    int P = 3;
+//    int index = findLastOccurrence(A, P);
+//
+//    if (index != -1) {
+//        std::cout << "Останнє входження P: індекс " << index << std::endl;
+//    }
+//    else {
+//        std::cout << "P не знайдено у послідовності" << std::endl;
+//    }
+//
+//    return 0;
+//}
+
+//5. Знайти кількість входжень значення P у послідовність A[n]
+int countOccurrences(const std::vector<int>&A, int P) {
+    int count = 0;
+    for (int val : A) {
+        if (val == P) {
+            count++;
+        }
+    }
+    return count;
 }
 
 int main() {
-    // Задано послідовність значень А[n]. Знайти мінімальне значення у послідовності.
-    {
-        initRandomizer();
+    std::vector<int> A = { 5, 3, 8, 1, 9, 3, 5 };
+    int P = 3;
+    int count = countOccurrences(A, P);
 
-        int n;
-        cout << "Enter the length of the sequence: ";
-        cin >> n;
-
-        std::vector<int> myVector(n);
-        // Populate the array with random values
-        for (int i = 0; i < n; i++) {
-            // arr[i] = rand();
-            int randomVar = (rand() % 100) - 50;
-            myVector[i] = randomVar;
-        }
-
-        // cout the array
-        for (int i = 0; i < n; i++) {
-            cout << myVector[i] << " ";
-        }
-        cout << endl;
-                       // indexes: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
-        int min = myVector[0]; // [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-        for (int i = 1; i < n; i++) {
-            if (myVector[i] < min) {
-                min = myVector[i];
-            }
-        }
-
-        cout << "The minimum value in the sequence is: " << min << endl;
-    }
+    std::cout << "Кількість входжень P: " << count << std::endl;
 
     return 0;
 }

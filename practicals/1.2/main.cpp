@@ -1,53 +1,61 @@
-/**
- * Done by:
- * Student Name: Severyn Kotyhoroshko
- * Student Group: 123
- * Lab 1.5
- */
-
 #include <iostream>
-#include <cstdlib>
-#include <ctime>
-
 using namespace std;
 
-void initRandomizer() {
-    // Seed the random number generator with the current time
-    srand(time(0));  // srand(time(NULL)) could also be used
-}
-
 int main() {
-    // Задано послідовність значень А[n]. Знайти мінімальне значення у послідовності.
-    {
-        initRandomizer();
+    // 1. Задано ціле число А. Якщо А – додатне число, то додати до нього 1, в іншому випадку відняти від нього 2.
+    //int A;
+    //cout << "Введіть число A: ";
+    //cin >> A;
 
-        int n;
-        cout << "Enter the length of the sequence: ";
-        cin >> n;
+    //if (A > 0) {
+    //    A += 1;
+    //}
+    //else {
+    //    A -= 2;
+    //}
+    //cout << "Результат 1: " << A << endl;
 
-        std::vector<int> myVector(n);
-        // Populate the array with random values
-        for (int i = 0; i < n; i++) {
-            // arr[i] = rand();
-            int randomVar = (rand() % 100) - 50;
-            myVector[i] = randomVar;
-        }
+    // 2. Задано два значення А і В. Визначити, чи А дорівнює В.
+    //int B;
+    //cout << "Введіть число B: ";
+    //cin >> B;
 
-        // cout the array
-        for (int i = 0; i < n; i++) {
-            cout << myVector[i] << " ";
-        }
-        cout << endl;
-                       // indexes: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
-        int min = myVector[0]; // [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-        for (int i = 1; i < n; i++) {
-            if (myVector[i] < min) {
-                min = myVector[i];
-            }
-        }
+    //if (A == B) {
+    //    cout << "A дорівнює B" << endl;
+    //}
+    //else {
+    //    cout << "A не дорівнює B" << endl;
+    //}
 
-        cout << "The minimum value in the sequence is: " << min << endl;
+    // 3. Задано два значення А і В. Якщо значення не є рівними, присвоїти А значення В.
+    //if (A != B) {
+    //    A = B;
+    //    cout << "Тепер A дорівнює B: A = " << A << endl;
+    //}
+
+    //// 4. Задано два нерівних значення А і В. Відняти від більшого числа менше.
+    //if (A != B) {  // Припускається, що A та B нерівні
+    //    if (A > B) {
+    //        A -= B;
+    //    }
+    //    else {
+    //        B -= A;
+    //    }
+    //    cout << "Результат 4: більше мінус менше = " << (A > B ? A : B) << endl;
+    //}
+    //else {
+    //    cout << "Числа A та B повинні бути різними." << endl;
     }
+
+    // 5. Задано число А. Знайти абсолютне значення А (не використовуючи операцію модуля числа).
+    int absValue;
+    if (A >= 0) {
+        absValue = A;
+    }
+    else {
+        absValue = -A;
+    }
+    cout << "Абсолютне значення A: " << absValue << endl;
 
     return 0;
 }
