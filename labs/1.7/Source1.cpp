@@ -1,13 +1,13 @@
-#include <iostream>
+п»ї#include <iostream>
 using namespace std;
 
-//1. Блочна структура програм
+//1. Р‘Р»РѕС‡РЅР° СЃС‚СЂСѓРєС‚СѓСЂР° РїСЂРѕРіСЂР°Рј
 
 //void blockFunction1() {
 //    int a = 10;
 //    cout << "Block 1, a = " << a << endl;
 //
-//    // Вкладений блок
+//    // Р’РєР»Р°РґРµРЅРёР№ Р±Р»РѕРє
 //    {
 //        int b = 20;
 //        cout << "Nested Block in Block 1, b = " << b << endl;
@@ -24,7 +24,7 @@ using namespace std;
 //    blockFunction1();
 //    blockFunction2();
 //
-//    // Вкладений блок
+//    // Р’РєР»Р°РґРµРЅРёР№ Р±Р»РѕРє
 //    {
 //        int d = 40;
 //        cout << "Nested Block in Main, d = " << d << endl;
@@ -33,12 +33,12 @@ using namespace std;
 //    return 0;
 //}
 
-//2. Статичний розподіл пам'яті
+//2. РЎС‚Р°С‚РёС‡РЅРёР№ СЂРѕР·РїРѕРґС–Р» РїР°Рј'СЏС‚С–
 
-//static int globalStaticVar = 100;  // Статична змінна поза main
+//static int globalStaticVar = 100;  // РЎС‚Р°С‚РёС‡РЅР° Р·РјС–РЅРЅР° РїРѕР·Р° main
 //
 //void functionWithStaticVar() {
-//    static int staticVar = 0;  // Статична змінна всередині блоку
+//    static int staticVar = 0;  // РЎС‚Р°С‚РёС‡РЅР° Р·РјС–РЅРЅР° РІСЃРµСЂРµРґРёРЅС– Р±Р»РѕРєСѓ
 //    staticVar++;
 //    cout << "Static Var in function: " << staticVar << endl;
 //}
@@ -55,31 +55,31 @@ using namespace std;
 //    return 0;
 //}
 
-//3. Динамічний розподіл пам'яті
+//3. Р”РёРЅР°РјС–С‡РЅРёР№ СЂРѕР·РїРѕРґС–Р» РїР°Рј'СЏС‚С–
 
 //int main() {
-//    int* dynamicVar1 = new int(5);  // Динамічний розподіл в main
+//    int* dynamicVar1 = new int(5);  // Р”РёРЅР°РјС–С‡РЅРёР№ СЂРѕР·РїРѕРґС–Р» РІ main
 //    cout << "Dynamic Variable 1: " << *dynamicVar1 << endl;
 //
-//    // Вкладений блок
+//    // Р’РєР»Р°РґРµРЅРёР№ Р±Р»РѕРє
 //    {
 //        int* dynamicVar2 = new int(10);
 //        cout << "Dynamic Variable 2: " << *dynamicVar2 << endl;
-//        delete dynamicVar2;  // Звільнення пам'яті
+//        delete dynamicVar2;  // Р—РІС–Р»СЊРЅРµРЅРЅСЏ РїР°Рј'СЏС‚С–
 //    }
 //
-//    delete dynamicVar1;  // Звільнення пам'яті
+//    delete dynamicVar1;  // Р—РІС–Р»СЊРЅРµРЅРЅСЏ РїР°Рј'СЏС‚С–
 //    return 0;
 //}
 //
-////4. Операція глобального дозволу видимості імен
+////4. РћРїРµСЂР°С†С–СЏ РіР»РѕР±Р°Р»СЊРЅРѕРіРѕ РґРѕР·РІРѕР»Сѓ РІРёРґРёРјРѕСЃС‚С– С–РјРµРЅ
 //
-//int var = 10;  // Глобальна змінна
+//int var = 10;  // Р“Р»РѕР±Р°Р»СЊРЅР° Р·РјС–РЅРЅР°
 //
 //void testFunction() {
-//    int var = 20;  // Локальна змінна
+//    int var = 20;  // Р›РѕРєР°Р»СЊРЅР° Р·РјС–РЅРЅР°
 //    cout << "Local var: " << var << endl;
-//    cout << "Global var using scope resolution: " << ::var << endl;  // Використання глобального імені
+//    cout << "Global var using scope resolution: " << ::var << endl;  // Р’РёРєРѕСЂРёСЃС‚Р°РЅРЅСЏ РіР»РѕР±Р°Р»СЊРЅРѕРіРѕ С–РјРµРЅС–
 //}
 //
 //int main() {
@@ -87,22 +87,22 @@ using namespace std;
 //    return 0;
 //}
 
-//5. Динамічний розподіл пам'яті в "купі"
+//5. Р”РёРЅР°РјС–С‡РЅРёР№ СЂРѕР·РїРѕРґС–Р» РїР°Рј'СЏС‚С– РІ "РєСѓРїС–"
 
 int main() {
-    // Перший вказівник
+    // РџРµСЂС€РёР№ РІРєР°Р·С–РІРЅРёРє
     int* heapVar1 = new int(15);
     cout << "Heap Variable 1: " << *heapVar1 << endl;
 
-    // Другий вказівник
+    // Р”СЂСѓРіРёР№ РІРєР°Р·С–РІРЅРёРє
     int* heapVar2 = new int(25);
     cout << "Heap Variable 2: " << *heapVar2 << endl;
 
-    // Звільнення пам'яті
+    // Р—РІС–Р»СЊРЅРµРЅРЅСЏ РїР°Рј'СЏС‚С–
     delete heapVar1;
-    heapVar1 = nullptr;  // Щоб уникнути утворення сміття
+    heapVar1 = nullptr;  // Р©РѕР± СѓРЅРёРєРЅСѓС‚Рё СѓС‚РІРѕСЂРµРЅРЅСЏ СЃРјС–С‚С‚СЏ
 
-    // Не звільняємо пам'ять для heapVar2 для демонстрації сміття
+    // РќРµ Р·РІС–Р»СЊРЅСЏС”РјРѕ РїР°Рј'СЏС‚СЊ РґР»СЏ heapVar2 РґР»СЏ РґРµРјРѕРЅСЃС‚СЂР°С†С–С— СЃРјС–С‚С‚СЏ
     // delete heapVar2;
 
     return 0;
