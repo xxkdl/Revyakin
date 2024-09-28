@@ -1,121 +1,127 @@
-
 #include <iostream>
 #include <vector>
 #include <limits>
 
-//1. Знайти мінімальне значення у послідовності
-//int findMin(const std::vector<int>&A) {
-//    int minValue = std::numeric_limits<int>::max();  // Ініціалізуємо значенням максимально можливого int
-//    for (int val : A) {
-//        if (val < minValue) {
-//            minValue = val;
-//        }
-//    }
-//    return minValue;
-//}
-//
-//int main() {
-//    std::vector<int> A = { 5, 3, 8, 1, 9, -2 };
-//    std::cout << "Мінімальне значення: " << findMin(A) << std::endl;
-//
-//    return 0;
-//}
+using namespace std;
 
-//2. Знайти індекс найбільшого значення серед додатних елементів послідовності
-//int findMaxPositiveIndex(const std::vector<int>&A) {
-//    int maxIndex = -1;
-//    int maxValue = std::numeric_limits<int>::min(); // Ініціалізуємо найменшим значенням int
-//    for (size_t i = 0; i < A.size(); ++i) {
-//        if (A[i] > 0 && A[i] > maxValue) {
-//            maxValue = A[i];
-//            maxIndex = i;
-//        }
-//    }
-//    return maxIndex;
-//}
+// Функція для знаходження мінімального значення у послідовності
+void n1(const vector<int>& sequences) {
+    int minValue = numeric_limits<int>::max(); // Ініціалізуємо мінімальне значення максимальним можливим значенням
+    for (int num : sequences) {
+        if (num < minValue) {
+            minValue = num;
+        }
+    }
+    cout << "Мінімальне значення: " << minValue << endl;
+}
 
-//int main() {
-//    std::vector<int> A = { -4, 3, 0, 7, 5, -1 };
-//    int index = findMaxPositiveIndex(A);
-//    if (index != -1) {
-//        std::cout << "Індекс найбільшого додатного елемента: " << index << std::endl;
-//    }
-//    else {
-//        std::cout << "Додатних елементів немає" << std::endl;
-//    }
-//
-//    return 0;
-//}
+// Функція для знаходження індексу найбільшого додатного елемента
+void n2(const vector<int>& sequences) {
+    int maxIndex = -1;
+    int maxValue = numeric_limits<int>::min();
+    for (int i = 0; i < sequences.size(); ++i) {
+        if (sequences[i] > 0 && sequences[i] > maxValue) {
+            maxValue = sequences[i];
+            maxIndex = i;
+        }
+    }
+    if (maxIndex != -1) {
+        cout << "Індекс найбільшого додатного елемента: " << maxIndex << endl;
+    }
+    else {
+        cout << "Немає додатних елементів у послідовності." << endl;
+    }
+}
 
-//3. Знайти мінімальне значення у послідовності A[n], більше за P
-//int findMinGreaterThanP(const std::vector<int>& A, int P) {
-//    int minValue = std::numeric_limits<int>::max();
-//    for (int val : A) {
-//        if (val > P && val < minValue) {
-//            minValue = val;
-//        }
-//    }
-//    return (minValue == std::numeric_limits<int>::max()) ? -1 : minValue; // Якщо такого елемента немає
-//}
+// Функція для знаходження мінімального значення більшим за P
+void n3(const vector<int>& sequences, int P) {
+    int minValue = numeric_limits<int>::max();
+    for (int num : sequences) {
+        if (num > P && num < minValue) {
+            minValue = num;
+        }
+    }
+    if (minValue != numeric_limits<int>::max()) {
+        cout << "Мінімальне значення більше ніж " << P << ": " << minValue << endl;
+    }
+    else {
+        cout << "Немає значень, більших за " << P << "." << endl;
+    }
+}
 
-//int main() {
-//    std::vector<int> A = { 5, 3, 8, 1, 9, -2 };
-//    int P = 4;
-//    int result = findMinGreaterThanP(A, P);
-//
-//    if (result != -1) {
-//        std::cout << "Мінімальне значення більше за P: " << result << std::endl;
-//    }
-//    else {
-//        std::cout << "Немає значення, більшого за P" << std::endl;
-//    }
-//
-//    return 0;
-//}
+// Функція для знаходження індексу останнього входження P
+void n4(const vector<int>& sequences, int P) {
+    int lastIndex = -1;
+    for (int i = 0; i < sequences.size(); ++i) {
+        if (sequences[i] == P) {
+            lastIndex = i;
+        }
+    }
+    if (lastIndex != -1) {
+        cout << "Останнє входження " << P << " знаходиться на індексі: " << lastIndex << endl;
+    }
+    else {
+        cout << P << " не знайдено у послідовності." << endl;
+    }
+}
 
-//4. Знайти індекс останнього входження значення P у послідовність A[n]
-//int findLastOccurrence(const std::vector<int>&A, int P) {
-//    int lastIndex = -1;
-//    for (size_t i = 0; i < A.size(); ++i) {
-//        if (A[i] == P) {
-//            lastIndex = i;
-//        }
-//    }
-//    return lastIndex;
-//}
-
-//int main() {
-//    std::vector<int> A = { 5, 3, 8, 1, 9, 3, 5 };
-//    int P = 3;
-//    int index = findLastOccurrence(A, P);
-//
-//    if (index != -1) {
-//        std::cout << "Останнє входження P: індекс " << index << std::endl;
-//    }
-//    else {
-//        std::cout << "P не знайдено у послідовності" << std::endl;
-//    }
-//
-//    return 0;
-//}
-
-//5. Знайти кількість входжень значення P у послідовність A[n]
-int countOccurrences(const std::vector<int>&A, int P) {
+// Функція для знаходження кількості входжень P
+void n5(const vector<int>& sequences, int P) {
     int count = 0;
-    for (int val : A) {
-        if (val == P) {
+    for (int num : sequences) {
+        if (num == P) {
             count++;
         }
     }
-    return count;
+    cout << "Кількість входжень " << P << ": " << count << endl;
 }
 
 int main() {
-    std::vector<int> A = { 5, 3, 8, 1, 9, 3, 5 };
-    int P = 3;
-    int count = countOccurrences(A, P);
+    vector<int> sequences;
+    int n, choice, P;
 
-    std::cout << "Кількість входжень P: " << count << std::endl;
+    cout << "Введіть кількість елементів у послідовності: ";
+    cin >> n;
+
+    cout << "Введіть елементи послідовності: ";
+    sequences.resize(n);
+    for (int i = 0; i < n; ++i) {
+        cin >> sequences[i];
+    }
+
+    do {
+        cout << "\nВиберіть завдання (1-5, 0 для виходу): ";
+        cin >> choice;
+
+        switch (choice) {
+        case 1:
+            n1(sequences);
+            break;
+        case 2:
+            n2(sequences);
+            break;
+        case 3:
+            cout << "Введіть значення P: ";
+            cin >> P;
+            n3(sequences, P);
+            break;
+        case 4:
+            cout << "Введіть значення P: ";
+            cin >> P;
+            n4(sequences, P);
+            break;
+        case 5:
+            cout << "Введіть значення P: ";
+            cin >> P;
+            n5(sequences, P);
+            break;
+        case 0:
+            cout << "Вихід." << endl;
+            break;
+        default:
+            cout << "Невірний вибір. Спробуйте ще раз." << endl;
+        }
+    } while (choice != 0);
 
     return 0;
 }
