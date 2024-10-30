@@ -24,14 +24,14 @@ bool isValidString(const std::string& str) {
 
 int main() {
     std::string input;
-    std::cout << "Введіть ланцюжок: ";
+    std::cout << "Enter the chain: ";
     std::cin >> input;
 
     if (isValidString(input)) {
-        std::cout << "Ланцюжок правильний." << std::endl;
+        std::cout << "Chain is correct." << std::endl;
     }
     else {
-        std::cout << "Помилка! Ланцюжок неправильний." << std::endl;
+        std::cout << "Error! Chain is not correct." << std::endl;
     }
 
     return 0;
